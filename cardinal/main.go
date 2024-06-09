@@ -60,9 +60,8 @@ func MustInitWorld(w *cardinal.World) {
 		system.UpdatePlayerBalanceSystem,
 	))
 
-	Must(cardinal.RegisterInitSystems(w,
-		system.SpawnDefaultPlayersSystem,
-	))
+	Must(cardinal.RegisterInitSystems(w))//system.SpawnDefaultPlayersSystem,
+
 }
 
 func Must(err ...error) {
