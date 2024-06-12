@@ -40,6 +40,7 @@ func MustInitWorld(w *cardinal.World) {
 		cardinal.RegisterMessage[msg.CreatePlayerMsg, msg.CreatePlayerResult](w, "create-player"),
 		cardinal.RegisterMessage[msg.AttackPlayerMsg, msg.AttackPlayerMsgReply](w, "attack-player"),
 		cardinal.RegisterMessage[msg.UpdatePlayerBalanceMsg, msg.UpdatePlayerBalanceMsgReply](w, "update-player-balance"),
+		cardinal.RegisterMessage[msg.UpdatePlayerHealthMsg, msg.UpdatePlayerHealthMsgReply](w, "update-player-health"),
 	)
 
 	// Register queries
@@ -55,12 +56,13 @@ func MustInitWorld(w *cardinal.World) {
 	// so that the player's HP is subtracted (and player killed if it reaches 0) before HP is regenerated.
 	Must(cardinal.RegisterSystems(w,
 		system.AttackSystem,
-		system.RegenSystem,
+		//system.RegenSystem,
 		system.PlayerSpawnerSystem,
 		system.UpdatePlayerBalanceSystem,
+		system.UpdatePlayerHealthSystem,
 	))
 
-	Must(cardinal.RegisterInitSystems(w))//system.SpawnDefaultPlayersSystem,
+	Must(cardinal.RegisterInitSystems(w)) //system.SpawnDefaultPlayersSystem,
 
 }
 
